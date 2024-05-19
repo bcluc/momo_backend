@@ -92,9 +92,7 @@ app.post("/pay", async (req, res) => {
   }
 });
 
-// app.post("/check", async(req,res)=>{
-
-// })
+app.post("/check", async (req, res) => {});
 
 const PORT = process.env.PORT;
 app.listen(PORT, () => {
