@@ -94,6 +94,10 @@ app.post("/pay", async (req, res) => {
 
 app.post("/check", async (req, res) => {});
 
+app.get("/welcome", (req, res) => {
+  res.status(200).send({ message: "Welcome to the Momo REST-API" });
+});
+
 const PORT = process.env.PORT;
 app.listen(PORT, () => {
   console.log(`Server is running on port ${PORT}`);
