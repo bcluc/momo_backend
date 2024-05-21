@@ -3,10 +3,27 @@ const express = require("express");
 const dotenv = require("dotenv");
 const crypto = require("crypto");
 const https = require("https");
+const swaggerUi = require("swagger-ui-express");
+const YAML = require("yamljs");
+const cors = require("cors");
+const swaggerAutogen = require("swagger-autogen")();
 
 dotenv.config();
 
 const app = express();
+
+// Use cors library
+app.use(
+  cors({
+    origin: "*",
+    methods: ["GET", "POST", "DELETE", "UPDATE", "PUT"],
+  })
+);
+
+//setup Swagger
+const swaggerDocument = require("./swagger-output.json");
+app.use("/api/docs", swaggerUi.serve, swaggerUi.setup(swaggerDocument));
+
 app.use(express.json());
 
 function payMomo(amount) {
@@ -82,7 +99,7 @@ function payMomo(amount) {
   });
 }
 
-app.post("/pay", async (req, res) => {
+app.post("/api/pay", async (req, res) => {
   const { amount } = req.body;
   try {
     const payUrl = await payMomo(amount);
@@ -92,14 +109,16 @@ app.post("/pay", async (req, res) => {
   }
 });
 
-app.post("/check", async (req, res) => {});
+app.post("/api/check", async (req, res) => {});
 
-app.get("/welcome", (req, res) => {
+app.get("/api/welcome", (req, res) => {
   res.status(200).send({ message: "Welcome to the Momo REST-API" });
 });
 
 const PORT = process.env.PORT;
 app.listen(PORT, () => {
   console.log(`Server is running on port ${PORT}`);
-  payMomo(4500);
+  //payMomo(4500);
 });
+
+module.exports = app;
