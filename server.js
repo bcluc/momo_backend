@@ -118,7 +118,6 @@ app.get("/api/welcome", (req, res) => {
 const PORT = process.env.PORT;
 app.listen(PORT, () => {
   console.log(`Server is running on port ${PORT}`);
-  //payMomo(4500);
 });
 
 module.exports = app;
