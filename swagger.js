@@ -5,7 +5,7 @@ const doc = {
     title: "Momo Api",
     description: "Simple momo api for paying and check status",
   },
-  host: "momo-backend-1r3y.onrender.com",
+  host: "localhost:3000",
 };
 
 const outputFile = "./swagger-output.json";
