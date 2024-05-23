@@ -103,16 +103,6 @@ function payMomo(amount) {
   });
 }
 
-// POST /v2/gateway/api/query
-
-// Attribute	Type	Required	Description
-// partnerCode	String		Integration information
-// requestId	String		Unique ID of each request
-// orderId	String		ID of order that needs to be checked.
-// lang	String		Language of returned message (vi or en)
-// signature	String		Signature to check information. Use Hmac_SHA256 algorithm with data in format:
-// accessKey=$accessKey&orderId=$orderId&partnerCode=$partnerCode&requestId=$requestId
-
 function checkTransaction(orderId) {
   return new Promise((resolve, reject) => {
     const accessKey = process.env.MOMO_ACCESS_KEY;
@@ -178,8 +168,9 @@ app.post("/api/pay", async (req, res) => {
 });
 
 app.post("/api/check", async (req, res) => {
+  const { orderId } = req.body;
   try {
-    const result = await checkTransaction(latestOrder);
+    const result = await checkTransaction(orderId);
     res.json({ result });
   } catch (error) {
     res.status(500).json({ error: error.message });
