@@ -5,11 +5,9 @@
     "description": "Simple momo api for paying and check status",
     "version": "1.0.0"
   },
-  "host": "localhost:3000",
+  "host": "momo-backend-1r3y.onrender.com",
   "basePath": "/",
-  "schemes": [
-    "http"
-  ],
+  "schemes": ["http", "https"],
   "paths": {
     "/api/pay": {
       "post": {
