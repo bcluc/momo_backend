@@ -7,7 +7,7 @@
   },
   "host": "momo-backend-1r3y.onrender.com",
   "basePath": "/",
-  "schemes": ["http", "https"],
+  "schemes": ["https"],
   "paths": {
     "/api/pay": {
       "post": {
